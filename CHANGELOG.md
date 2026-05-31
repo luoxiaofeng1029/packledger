@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1 - 2026-05-31
+
+- Add package templates for homework, job application, and event registration submissions.
+- Add tests for template selection data.
+
 ## 0.1.0 - 2026-05-31
 
 - Initial PackLedger desktop app.

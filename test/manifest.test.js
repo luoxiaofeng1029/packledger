@@ -12,6 +12,7 @@ const {
   shouldSkipFileName,
   slugifyTitle
 } = require("../src/shared/manifest");
+const { PACKAGE_TEMPLATES, getTemplateById } = require("../src/shared/templates");
 
 test("formats bytes with compact labels", () => {
   assert.equal(formatBytes(0), "0 B");
@@ -72,4 +73,10 @@ test("readme includes package metadata", () => {
   assert.match(text, /Package: Coursework/);
   assert.match(text, /Created by: Tester/);
   assert.match(text, /Notes:\nFor review/);
+});
+
+test("package templates include common submission scenarios", () => {
+  assert.deepEqual(PACKAGE_TEMPLATES.map((template) => template.id), ["blank", "homework", "job", "event"]);
+  assert.equal(getTemplateById("homework").title, "Homework submission package");
+  assert.equal(getTemplateById("missing").id, "blank");
 });

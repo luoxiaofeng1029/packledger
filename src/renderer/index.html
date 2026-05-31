@@ -19,6 +19,10 @@
       <main class="workspace">
         <section class="panel setup-panel" aria-label="Package setup">
           <div class="field-grid">
+            <label class="wide">
+              <span>Package template</span>
+              <select id="templateSelect"></select>
+            </label>
             <label>
               <span>Package title</span>
               <input id="titleInput" type="text" value="My submission package" />
@@ -117,6 +121,7 @@
       </main>
     </div>
 
+    <script src="../shared/templates.js"></script>
     <script src="./renderer.js"></script>
   </body>
 </html>
