@@ -1,0 +1,56 @@
+{
+  "name": "packledger",
+  "version": "0.1.0",
+  "description": "A local desktop tool for packaging submission files with manifests and SHA-256 checksums.",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "check": "node --check src/main/main.js && node --check src/main/package-service.js && node --check src/preload/preload.js && node --check src/renderer/renderer.js && node --check src/shared/manifest.js",
+    "build": "npm run check && npm test",
+    "dist:win": "electron-builder --win portable"
+  },
+  "keywords": [
+    "desktop",
+    "electron",
+    "files",
+    "manifest",
+    "checksum",
+    "zip"
+  ],
+  "author": "luoxiaofeng <13852492678@163.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/luoxiaofeng1029/packledger#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luoxiaofeng1029/packledger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luoxiaofeng1029/packledger/issues"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "electron": "36.9.5",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "io.github.luoxiaofeng.packledger",
+    "productName": "PackLedger",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        "portable"
+      ]
+    }
+  }
+}
