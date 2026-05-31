@@ -9,6 +9,7 @@ const state = {
 
 const elements = {
   versionLabel: document.querySelector("#versionLabel"),
+  templateSelect: document.querySelector("#templateSelect"),
   titleInput: document.querySelector("#titleInput"),
   authorInput: document.querySelector("#authorInput"),
   noteInput: document.querySelector("#noteInput"),
@@ -27,6 +28,26 @@ const elements = {
   resultPath: document.querySelector("#resultPath"),
   showResultButton: document.querySelector("#showResultButton")
 };
+
+function initializeTemplates() {
+  const templateApi = window.PackLedgerTemplates;
+  if (!templateApi) {
+    return;
+  }
+
+  templateApi.PACKAGE_TEMPLATES.forEach((template) => {
+    const option = document.createElement("option");
+    option.value = template.id;
+    option.textContent = template.label;
+    elements.templateSelect.append(option);
+  });
+
+  elements.templateSelect.addEventListener("change", () => {
+    const template = templateApi.getTemplateById(elements.templateSelect.value);
+    elements.titleInput.value = template.title;
+    elements.noteInput.value = template.note;
+  });
+}
 
 function setStatus(text) {
   elements.statusText.textContent = text;
@@ -186,4 +207,5 @@ window.packledger.getVersion().then((version) => {
   elements.versionLabel.textContent = `v${version}`;
 });
 
+initializeTemplates();
 renderFiles({ files: [], fileCount: 0, totalSizeLabel: "0 B" });
